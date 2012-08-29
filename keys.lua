@@ -30,21 +30,22 @@ globalkeys = awful.util.table.join(
 			 end),
 
    -- volume control
-   awful.key({ modkey,		 }, "F10",    function () awful.util.spawn("amixer -q sset Master 1- unmute") end),
-   awful.key({ modkey,		 }, "F11",    function () awful.util.spawn("amixer -q sset Master toggle") end),
-   awful.key({ modkey,		 }, "F12",    function () awful.util.spawn("amixer -q sset Master 1+ unmute") end),
+   awful.key({ modkey,		 }, "F10",    function () awful.util.spawn(voldowncmd) end),
+   awful.key({ modkey,		 }, "F11",    function () awful.util.spawn(volmutecmd) end),
+   awful.key({ modkey,		 }, "F12",    function () awful.util.spawn(volupcmd) end),
    
    -- misc applications
-   awful.key({ modkey,		 }, "f",      function () awful.util.spawn("firefox") end),
-   awful.key({ modkey,		 }, "t",      function () awful.util.spawn("dolphin") end),
+   awful.key({ modkey,		 }, "w",      function () awful.util.spawn(browsercmd) end),
+   awful.key({ modkey, "Shift" }, "w",      function () awful.util.spawn(altbrowsercmd) end),
+   awful.key({ modkey,		 }, "t",      function () awful.util.spawn(filemancmd) end),
 
    -- Standard program
    awful.key({ modkey,           }, "Return", function () awful.util.spawn(terminal) end),
    awful.key({ modkey, "Shift"   }, "Return", function ()
-				awful.util.spawn("/home/ian/bin/emet") end),
+				awful.util.spawn(emacscmd) end),
 
    awful.key({ modkey, "Shift"   }, "Escape", function ()
-   	   			awful.util.spawn("/home/ian/bin/slrh.sh") end),
+   	   			awful.util.spawn(suspendcmd) end),
 
    awful.key({ modkey, "Control" }, "r", awesome.restart),
    awful.key({ modkey, "Shift"   }, "q", awesome.quit),
@@ -83,7 +84,7 @@ globalkeys = awful.util.table.join(
 								 "' -sf '" .. beautiful.dmenu_fg_focus .. "'")
 										  end),
    -- custom dmenu prompt:
-   awful.key({ modkey },			"w",	function ()
+   awful.key({ modkey, "Shift" },	"p",	function ()
 				awful.util.spawn("/home/ian/bin/dmenu_custom.bash") end),
 
    -- Lua prompt:
